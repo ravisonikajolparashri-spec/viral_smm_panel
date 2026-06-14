@@ -91,8 +91,16 @@ export default function Login() {
           </p>
         </div>
 
-        <p className="text-center text-slate-600 text-xs mt-5">
+        <p className="text-center text-slate-600 text-xs mt-5 flex flex-wrap justify-center gap-x-3 gap-y-1">
           <Link to="/" className="hover:text-slate-400 transition-colors">← Back to home</Link>
+          <span>·</span>
+          <a href="/privacy.html" className="hover:text-slate-400 transition-colors">Privacy</a>
+          <span>·</span>
+          <a href="/terms.html" className="hover:text-slate-400 transition-colors">Terms</a>
+          <span>·</span>
+          <a href="/refund.html" className="hover:text-slate-400 transition-colors">Refund</a>
+          <span>·</span>
+          <a href="/faq.html" className="hover:text-slate-400 transition-colors">FAQ</a>
         </p>
       </div>
     </div>

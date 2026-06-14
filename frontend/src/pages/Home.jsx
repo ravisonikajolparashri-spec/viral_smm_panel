@@ -161,9 +161,13 @@ export default function Home() {
             <span>Viral SMM Panel</span>
           </div>
           <p>© {new Date().getFullYear()} Viral SMM Panel. All rights reserved.</p>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
             <Link to="/login" className="hover:text-slate-400 transition-colors">Sign In</Link>
             <Link to="/register" className="hover:text-slate-400 transition-colors">Register</Link>
+            <a href="/privacy.html" className="hover:text-slate-400 transition-colors">Privacy</a>
+            <a href="/terms.html" className="hover:text-slate-400 transition-colors">Terms</a>
+            <a href="/refund.html" className="hover:text-slate-400 transition-colors">Refund</a>
+            <a href="/faq.html" className="hover:text-slate-400 transition-colors">FAQ</a>
           </div>
         </div>
       </footer>
