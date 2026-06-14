@@ -115,9 +115,9 @@ export default function AdminServices() {
                       <p className="font-medium text-slate-800 truncate">{s.name}</p>
                     </td>
                     <td className="px-4 py-3.5 text-slate-500 text-xs whitespace-nowrap">{s.category}</td>
-                    <td className="px-4 py-3.5 text-slate-400 text-xs">${s.original_rate}/1k</td>
+                    <td className="px-4 py-3.5 text-slate-400 text-xs">₹{s.original_rate}/1k</td>
                     <td className="px-4 py-3.5">
-                      <span className="font-semibold text-emerald-700">${s.rate}/1k</span>
+                      <span className="font-semibold text-emerald-700">₹{s.rate}/1k</span>
                     </td>
                     <td className="px-4 py-3.5 text-xs text-slate-500 whitespace-nowrap">
                       {s.min_order.toLocaleString()} – {s.max_order.toLocaleString()}
@@ -173,7 +173,7 @@ export default function AdminServices() {
             <h3 className="font-bold text-lg text-slate-800 mb-1">Edit Selling Rate</h3>
             <p className="text-slate-400 text-sm mb-1 truncate">{editModal.name}</p>
             <p className="text-xs text-slate-400 mb-5 bg-slate-50 px-3 py-2 rounded-lg inline-block">
-              BluesSMM cost: <strong className="text-slate-600">${editModal.original_rate}/1k</strong>
+              BluesSMM cost: <strong className="text-slate-600">₹{editModal.original_rate}/1k</strong>
             </p>
             <form onSubmit={handleEditRate} className="space-y-4">
               <div>

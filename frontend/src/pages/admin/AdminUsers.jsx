@@ -103,7 +103,7 @@ export default function AdminUsers() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-4 py-3.5 font-bold text-emerald-600">${u.balance.toFixed(2)}</td>
+                    <td className="px-4 py-3.5 font-bold text-emerald-600">₹{u.balance.toFixed(2)}</td>
                     <td className="px-4 py-3.5">
                       <span className={`px-2.5 py-1 rounded-full text-[11px] font-semibold border ${
                         u.is_active
@@ -169,7 +169,7 @@ export default function AdminUsers() {
               </div>
               <div>
                 <p className="text-sm font-semibold text-slate-700">{fundModal.username}</p>
-                <p className="text-xs text-slate-400">Current balance: <strong className="text-slate-600">${fundModal.balance.toFixed(2)}</strong></p>
+                <p className="text-xs text-slate-400">Current balance: <strong className="text-slate-600">₹{fundModal.balance.toFixed(2)}</strong></p>
               </div>
             </div>
             <form onSubmit={handleAddFunds} className="space-y-4">

@@ -106,7 +106,7 @@ export default function NewOrder() {
                   <option value="">Choose a service...</option>
                   {services.map(s => (
                     <option key={s.id} value={s.id}>
-                      #{s.external_id} — {s.name} (${s.rate}/1k)
+                      #{s.external_id} — {s.name} (₹{s.rate}/1k)
                     </option>
                   ))}
                 </select>
@@ -166,7 +166,7 @@ export default function NewOrder() {
             {insufficientBalance && (
               <div className="flex items-center gap-2 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm">
                 <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                Insufficient balance. You have <strong className="mx-1">${user.balance.toFixed(4)}</strong> but need <strong className="ml-1">${charge}</strong>.
+                Insufficient balance. You have <strong className="mx-1">₹{user.balance.toFixed(4)}</strong> but need <strong className="ml-1">₹{charge}</strong>.
               </div>
             )}
 
@@ -195,7 +195,7 @@ export default function NewOrder() {
           {/* Balance */}
           <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-5">
             <p className="text-xs text-slate-500 font-semibold uppercase tracking-wide mb-1">Your Balance</p>
-            <p className="text-2xl font-bold text-emerald-600">${user?.balance?.toFixed(2) ?? '0.00'}</p>
+            <p className="text-2xl font-bold text-emerald-600">₹{user?.balance?.toFixed(2) ?? '0.00'}</p>
           </div>
 
           {/* Service details */}
@@ -206,7 +206,7 @@ export default function NewOrder() {
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between text-slate-600">
                   <span>Rate</span>
-                  <span className="font-semibold text-slate-800">${selectedService.rate}/1k</span>
+                  <span className="font-semibold text-slate-800">₹{selectedService.rate}/1k</span>
                 </div>
                 <div className="flex justify-between text-slate-600">
                   <span>Min</span>
@@ -232,7 +232,7 @@ export default function NewOrder() {
               {charge && (
                 <div className="bg-blue-50 border border-blue-200 rounded-xl px-4 py-3">
                   <p className="text-xs text-blue-600 font-medium mb-0.5">Total Charge</p>
-                  <p className="text-xl font-bold text-blue-700">${charge}</p>
+                  <p className="text-xl font-bold text-blue-700">₹{charge}</p>
                 </div>
               )}
             </div>

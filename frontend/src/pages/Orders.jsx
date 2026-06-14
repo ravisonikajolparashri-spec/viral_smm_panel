@@ -139,7 +139,7 @@ export default function Orders() {
                       </a>
                     </td>
                     <td className="px-4 py-3.5 font-medium text-slate-700">{o.quantity.toLocaleString()}</td>
-                    <td className="px-4 py-3.5 font-semibold text-slate-800">${o.charge}</td>
+                    <td className="px-4 py-3.5 font-semibold text-slate-800">₹{o.charge}</td>
                     <td className="px-4 py-3.5">
                       <span className={`px-2.5 py-1 rounded-full text-[11px] font-semibold ${STATUS_STYLES[o.status] || 'bg-slate-100 text-slate-600'}`}>
                         {o.status}

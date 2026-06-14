@@ -60,7 +60,7 @@ export default function Dashboard() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
           label="Balance"
-          value={`$${user?.balance?.toFixed(2) ?? '0.00'}`}
+          value={`₹${user?.balance?.toFixed(2) ?? '0.00'}`}
           sub="Available funds"
           color="text-emerald-600"
           bg="bg-emerald-50"
@@ -189,7 +189,7 @@ export default function Dashboard() {
                     <p className="text-xs text-slate-400">{new Date(t.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</p>
                   </div>
                   <span className={`text-sm font-bold ${t.amount >= 0 ? 'text-emerald-600' : 'text-red-500'}`}>
-                    {t.amount >= 0 ? '+' : ''}${Math.abs(t.amount).toFixed(4)}
+                    {t.amount >= 0 ? '+' : ''}₹{Math.abs(t.amount).toFixed(4)}
                   </span>
                 </div>
               ))

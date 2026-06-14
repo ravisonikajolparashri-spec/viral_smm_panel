@@ -87,7 +87,7 @@ export default function Sidebar() {
         </div>
         <div className="mt-3 mx-1 flex items-center justify-between bg-emerald-900/40 border border-emerald-700/40 rounded-lg px-3 py-2">
           <span className="text-xs text-emerald-400 font-medium">Balance</span>
-          <span className="text-sm font-bold text-emerald-400">${user?.balance?.toFixed(2) ?? '0.00'}</span>
+          <span className="text-sm font-bold text-emerald-400">₹{user?.balance?.toFixed(2) ?? '0.00'}</span>
         </div>
       </div>
 
