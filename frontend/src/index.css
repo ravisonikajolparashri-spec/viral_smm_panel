@@ -5,3 +5,31 @@
 body {
   @apply bg-gray-50 text-gray-900;
 }
+
+/* Cross-browser fixes that can't be expressed as Tailwind utility classes */
+
+/* iOS Safari auto-zooms the page when a focused input's font-size is below
+   16px. Our inputs use text-sm (14px) for visual consistency, so force 16px
+   only while focused on small screens to prevent the jarring zoom-in. */
+@media (max-width: 640px) {
+  input:focus,
+  select:focus,
+  textarea:focus {
+    font-size: 16px !important;
+  }
+}
+
+/* Safari (and older browsers) need 100dvh as a fallback target for full-height
+   layouts; dvh accounts for the mobile browser's collapsing address bar,
+   keeping sidebars/modals from jumping when it shows/hides. */
+@supports (height: 100dvh) {
+  .min-h-screen {
+    min-height: 100dvh;
+  }
+}
+
+/* Respect iOS notch / home-indicator safe areas on full-bleed bottom sheets
+   and fixed bottom bars. */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}

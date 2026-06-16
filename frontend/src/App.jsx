@@ -13,6 +13,13 @@ import NewOrder from './pages/NewOrder'
 import Orders from './pages/Orders'
 import AddFunds from './pages/AddFunds'
 
+// Legal / Support — real in-app routes, available before AND after login
+import Terms from './pages/Terms'
+import Privacy from './pages/Privacy'
+import Refund from './pages/Refund'
+import Contact from './pages/Contact'
+import Faq from './pages/Faq'
+
 // Admin
 import AdminDashboard from './pages/admin/AdminDashboard'
 import AdminUsers from './pages/admin/AdminUsers'
@@ -27,6 +34,13 @@ export default function App() {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+
+      {/* Legal / Support — reachable before AND after login (LegalLayout handles auth-aware shell) */}
+      <Route path="/terms" element={<Terms />} />
+      <Route path="/privacy" element={<Privacy />} />
+      <Route path="/refund" element={<Refund />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/faq" element={<Faq />} />
 
       {/* User (protected) */}
       <Route path="/dashboard" element={<ProtectedRoute><Layout><Dashboard /></Layout></ProtectedRoute>} />

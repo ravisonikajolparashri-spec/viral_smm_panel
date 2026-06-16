@@ -175,7 +175,7 @@ export default function AdminServices() {
       {/* Edit Rate Modal */}
       {editModal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-end sm:items-center justify-center z-50 px-0 sm:px-4">
-          <div className="bg-white rounded-t-3xl sm:rounded-2xl p-6 w-full sm:max-w-sm shadow-2xl">
+          <div className="bg-white rounded-t-3xl sm:rounded-2xl p-6 w-full sm:max-w-sm shadow-2xl safe-area-bottom">
             <h3 className="font-bold text-lg text-slate-800 mb-1">Edit Selling Rate</h3>
             <p className="text-slate-400 text-sm mb-1 truncate">{editModal.name}</p>
             <p className="text-xs text-slate-500 mb-5 bg-slate-50 px-3 py-2 rounded-lg inline-block">

@@ -18,6 +18,7 @@ const ICONS = {
   logout:    'M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1',
   shield:    'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
   close:     'M6 18L18 6M6 6l12 12',
+  support:   'M18.364 5.636l-3.536 3.536m-5.656 5.656l-3.536 3.536m12.728 0l-3.536-3.536M5.636 5.636l3.536 3.536M12 8a4 4 0 100 8 4 4 0 000-8z',
 }
 
 const userLinks = [
@@ -134,8 +135,15 @@ export default function Sidebar({ onClose }) {
         )}
       </nav>
 
-      {/* Logout */}
-      <div className="px-2 py-3 border-t border-slate-700/60">
+      {/* Support + Logout */}
+      <div className="px-2 py-3 border-t border-slate-700/60 space-y-0.5">
+        <NavItem
+          to="/contact"
+          label="Contact Support"
+          icon="support"
+          onClose={onClose}
+          activeClass="bg-slate-800 text-white"
+        />
         <button
           onClick={handleLogout}
           className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:bg-red-900/30 hover:text-red-400 transition-all duration-150 touch-manipulation"

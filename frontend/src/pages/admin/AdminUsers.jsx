@@ -190,7 +190,7 @@ export default function AdminUsers() {
       {/* Add Funds Modal — bottom sheet on mobile, centered on desktop */}
       {fundModal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-end sm:items-center justify-center z-50 px-0 sm:px-4">
-          <div className="bg-white rounded-t-3xl sm:rounded-2xl p-6 w-full sm:max-w-sm shadow-2xl">
+          <div className="bg-white rounded-t-3xl sm:rounded-2xl p-6 w-full sm:max-w-sm shadow-2xl safe-area-bottom">
             <h3 className="font-bold text-lg text-slate-800 mb-1">Add Funds</h3>
             <div className="flex items-center gap-2.5 bg-slate-50 rounded-xl px-3 py-2.5 mb-5">
               <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs font-bold shrink-0">

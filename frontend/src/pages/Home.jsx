@@ -164,11 +164,11 @@ export default function Home() {
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
             <Link to="/login" className="hover:text-slate-400 transition-colors">Sign In</Link>
             <Link to="/register" className="hover:text-slate-400 transition-colors">Register</Link>
-            <a href="/privacy.html" className="hover:text-slate-400 transition-colors">Privacy</a>
-            <a href="/terms.html" className="hover:text-slate-400 transition-colors">Terms</a>
-            <a href="/refund.html" className="hover:text-slate-400 transition-colors">Refund</a>
-            <a href="/faq.html" className="hover:text-slate-400 transition-colors">FAQ</a>
-            <a href="/contact.html" className="hover:text-slate-400 transition-colors">Contact Us</a>
+            <Link to="/privacy" className="hover:text-slate-400 transition-colors">Privacy</Link>
+            <Link to="/terms" className="hover:text-slate-400 transition-colors">Terms</Link>
+            <Link to="/refund" className="hover:text-slate-400 transition-colors">Refund</Link>
+            <Link to="/faq" className="hover:text-slate-400 transition-colors">FAQ</Link>
+            <Link to="/contact" className="hover:text-slate-400 transition-colors">Contact Us</Link>
           </div>
         </div>
       </footer>
