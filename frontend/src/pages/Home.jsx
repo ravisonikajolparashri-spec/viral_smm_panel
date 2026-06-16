@@ -168,6 +168,7 @@ export default function Home() {
             <a href="/terms.html" className="hover:text-slate-400 transition-colors">Terms</a>
             <a href="/refund.html" className="hover:text-slate-400 transition-colors">Refund</a>
             <a href="/faq.html" className="hover:text-slate-400 transition-colors">FAQ</a>
+            <a href="/contact.html" className="hover:text-slate-400 transition-colors">Contact Us</a>
           </div>
         </div>
       </footer>
