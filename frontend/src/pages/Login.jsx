@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { getErrorMessage } from '../api'
 
 export default function Login() {
   const { login } = useAuth()
@@ -17,7 +18,7 @@ export default function Login() {
       const user = await login(form.email, form.password)
       navigate(user.is_admin ? '/admin' : '/dashboard')
     } catch (err) {
-      setError(err.response?.data?.detail || 'Invalid email or password')
+      setError(getErrorMessage(err, 'Invalid email or password'))
     } finally {
       setLoading(false)
     }

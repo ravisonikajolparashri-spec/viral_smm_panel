@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { adminAPI } from '../../api'
+import { adminAPI, getErrorMessage } from '../../api'
 
 export default function AdminUsers() {
   const [users, setUsers] = useState([])
@@ -26,7 +26,7 @@ export default function AdminUsers() {
       setMessage({ text: `Added ₹${fundAmount} to ${fundModal.username}'s balance`, type: 'success' })
       setFundModal(null); setFundAmount('')
     } catch (err) {
-      setMessage({ text: err.response?.data?.detail || 'Failed to add funds', type: 'error' })
+      setMessage({ text: getErrorMessage(err, 'Failed to add funds'), type: 'error' })
     }
   }
 

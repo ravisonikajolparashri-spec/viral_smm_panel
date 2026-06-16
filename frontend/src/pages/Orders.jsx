@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ordersAPI } from '../api'
+import { ordersAPI, getErrorMessage } from '../api'
 import CustomSelect from '../components/CustomSelect'
 
 const STATUS_STYLES = {
@@ -39,7 +39,7 @@ export default function Orders() {
       await ordersAPI.refill(id)
       setMessage({ text: 'Refill requested!', type: 'success' })
     } catch (err) {
-      setMessage({ text: err.response?.data?.detail || 'Refill failed', type: 'error' })
+      setMessage({ text: getErrorMessage(err, 'Refill failed'), type: 'error' })
     } finally {
       setActionLoading(null)
     }
@@ -53,7 +53,7 @@ export default function Orders() {
       setOrders(prev => prev.map(o => o.id === id ? { ...o, status: 'Canceled' } : o))
       setMessage({ text: 'Order canceled.', type: 'success' })
     } catch (err) {
-      setMessage({ text: err.response?.data?.detail || 'Cancel failed', type: 'error' })
+      setMessage({ text: getErrorMessage(err, 'Cancel failed'), type: 'error' })
     } finally {
       setActionLoading(null)
     }

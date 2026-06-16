@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { adminAPI } from '../../api'
+import { adminAPI, getErrorMessage } from '../../api'
 
 export default function AdminServices() {
   const [services, setServices] = useState([])
@@ -21,7 +21,7 @@ export default function AdminServices() {
       setMessage({ text: `Sync complete: ${r.data.added} added, ${r.data.updated} updated`, type: 'success' })
       adminAPI.services().then(r2 => setServices(r2.data))
     } catch (err) {
-      setMessage({ text: err.response?.data?.detail || 'Sync failed', type: 'error' })
+      setMessage({ text: getErrorMessage(err, 'Sync failed'), type: 'error' })
     } finally {
       setSyncing(false)
     }

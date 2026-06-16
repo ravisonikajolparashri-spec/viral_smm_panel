@@ -18,11 +18,19 @@ api.interceptors.request.use((config) => {
   return config
 })
 
-// Auto-logout on 401
+// Auto-logout on 401 — but only for an *expired/invalid existing session*,
+// never for a failed login/register attempt itself. Those endpoints return
+// 401/422 with a normal error message that the page should show inline;
+// force-redirecting on every 401 used to hijack that response and hard-reload
+// the page back to /login before the error could ever render.
+const AUTH_ENDPOINTS = ['/auth/login', '/auth/register']
+
 api.interceptors.response.use(
   (res) => res,
   (err) => {
-    if (err.response?.status === 401) {
+    const isAuthEndpoint = AUTH_ENDPOINTS.some((p) => err.config?.url?.includes(p))
+    const hadToken = !!localStorage.getItem('token')
+    if (err.response?.status === 401 && hadToken && !isAuthEndpoint) {
       localStorage.removeItem('token')
       localStorage.removeItem('user')
       window.location.href = '/login'
@@ -30,6 +38,20 @@ api.interceptors.response.use(
     return Promise.reject(err)
   }
 )
+
+// Pulls a human-readable message out of a failed API call. FastAPI returns
+// `detail` as a plain string for most errors, but as an array of
+// { msg, loc, ... } objects for pydantic validation errors (422s) — those
+// must never be rendered directly as a React child or the page blanks out.
+export function getErrorMessage(err, fallback = 'Something went wrong') {
+  const detail = err?.response?.data?.detail
+  if (!detail) return fallback
+  if (typeof detail === 'string') return detail
+  if (Array.isArray(detail)) {
+    return detail.map((d) => d.msg || JSON.stringify(d)).join('; ')
+  }
+  return fallback
+}
 
 // ── Auth ──────────────────────────────────────────────────────────────────
 export const authAPI = {

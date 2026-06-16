@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { getErrorMessage } from '../api'
 
 const fields = [
   { label: 'Email',            key: 'email',    type: 'email',    placeholder: 'you@example.com', autoComplete: 'email' },
@@ -26,7 +27,7 @@ export default function Register() {
       await register({ email: form.email, username: form.username, password: form.password })
       navigate('/dashboard')
     } catch (err) {
-      setError(err.response?.data?.detail || 'Registration failed')
+      setError(getErrorMessage(err, 'Registration failed'))
     } finally {
       setLoading(false)
     }

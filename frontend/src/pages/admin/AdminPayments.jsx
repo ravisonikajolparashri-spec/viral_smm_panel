@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { adminAPI } from '../../api'
+import { adminAPI, getErrorMessage } from '../../api'
 import CustomSelect from '../../components/CustomSelect'
 
 const STATUS_OPTIONS = [
@@ -67,7 +67,7 @@ export default function AdminPayments() {
       setQrImage(dataUrl)
       setMessage({ text: 'Payment QR code updated', type: 'success' })
     } catch (err) {
-      setMessage({ text: err.response?.data?.detail || 'Failed to update QR code', type: 'error' })
+      setMessage({ text: getErrorMessage(err, 'Failed to update QR code'), type: 'error' })
     } finally {
       setQrUploading(false)
       e.target.value = ''
@@ -102,7 +102,7 @@ export default function AdminPayments() {
       setReviewModal(null); setNote('')
       loadRequests()
     } catch (err) {
-      setMessage({ text: err.response?.data?.detail || 'Action failed', type: 'error' })
+      setMessage({ text: getErrorMessage(err, 'Action failed'), type: 'error' })
     } finally {
       setBusy(false)
     }

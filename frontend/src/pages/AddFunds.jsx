@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useAuth } from '../context/AuthContext'
-import { transactionsAPI } from '../api/index'
+import { transactionsAPI, getErrorMessage } from '../api/index'
 
 const STATUS_STYLES = {
   pending: 'bg-amber-50 text-amber-700 border-amber-200',
@@ -115,7 +115,7 @@ export default function AddFunds() {
       setAmount(''); setTransactionId(''); setScreenshot(null); setScreenshotName('')
       loadHistory()
     } catch (err) {
-      setStatus({ type: 'error', message: err?.response?.data?.detail || 'Failed to submit. Try again.' })
+      setStatus({ type: 'error', message: getErrorMessage(err, 'Failed to submit. Try again.') })
     } finally {
       setLoading(false)
     }

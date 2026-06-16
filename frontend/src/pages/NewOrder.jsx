@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { servicesAPI, ordersAPI } from '../api'
+import { servicesAPI, ordersAPI, getErrorMessage } from '../api'
 import { useAuth } from '../context/AuthContext'
 import CustomSelect from '../components/CustomSelect'
 
@@ -64,7 +64,7 @@ export default function NewOrder() {
       setSuccess('Order placed! Redirecting…')
       setTimeout(() => navigate('/orders'), 1500)
     } catch (err) {
-      setError(err.response?.data?.detail || 'Failed to place order')
+      setError(getErrorMessage(err, 'Failed to place order'))
     } finally {
       setLoading(false)
     }
