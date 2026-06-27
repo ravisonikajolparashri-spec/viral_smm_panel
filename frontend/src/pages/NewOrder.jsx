@@ -26,15 +26,21 @@ export default function NewOrder() {
   }, [])
 
   // ── Categories (platforms) ─────────────────────────────────────────────────
+  // allServices already arrives from the backend grouped by category and,
+  // within each category, with the visitor's-country services first — so we
+  // preserve that order here instead of re-sorting alphabetically, which
+  // would undo both the category grouping and the country prioritization.
   const categoryOptions = useMemo(() => {
+    const order = []
     const map = {}
     allServices.forEach(s => {
-      if (!map[s.category]) map[s.category] = []
+      if (!map[s.category]) {
+        map[s.category] = []
+        order.push(s.category)
+      }
       map[s.category].push(s)
     })
-    return Object.keys(map)
-      .sort((a, b) => a.localeCompare(b))
-      .map(cat => ({ value: cat, label: cat, meta: { count: map[cat].length } }))
+    return order.map(cat => ({ value: cat, label: cat, meta: { count: map[cat].length } }))
   }, [allServices])
 
   // ── Subcategories within the chosen category ─────────────────────────────
@@ -42,7 +48,6 @@ export default function NewOrder() {
     if (!selectedCategory) return []
     return allServices
       .filter(s => s.category === selectedCategory)
-      .sort((a, b) => a.name.localeCompare(b.name))
       .map(s => ({ value: s.id, label: s.name, meta: s }))
   }, [allServices, selectedCategory])
 

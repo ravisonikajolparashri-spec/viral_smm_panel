@@ -22,17 +22,41 @@ async def list_services(
     query = select(Service).where(Service.is_active == True)
     if category:
         query = query.where(Service.category == category)
-    # Base order is category, name — the country re-sort below is a *stable*
-    # sort, so within "my country" and "everything else" this ordering holds.
     query = query.order_by(Service.category, Service.name)
     result = await db.execute(query)
     services = result.scalars().all()
 
     visitor_country = await get_country_for_ip(get_client_ip(request))
-    if visitor_country:
-        services = sorted(services, key=lambda s: s.country != visitor_country)
 
-    return services
+    # Group by category first so the response always stays clustered by
+    # platform (all Instagram together, then all Facebook, etc.) — a plain
+    # global sort by country would interleave categories and break that.
+    by_category: dict[str, list[Service]] = {}
+    for s in services:
+        by_category.setdefault(s.category, []).append(s)
+
+    def has_country_match(cat_services: list[Service]) -> bool:
+        return any(s.country == visitor_country for s in cat_services)
+
+    # Categories that contain at least one service matching the visitor's
+    # country bubble to the top (alphabetical among themselves); the rest
+    # follow, also alphabetical. Without a resolved country, keep original
+    # (alphabetical-by-category) order.
+    category_order = sorted(
+        by_category.keys(),
+        key=lambda cat: (0, cat) if not visitor_country else (not has_country_match(by_category[cat]), cat)
+    )
+
+    ordered_services: list[Service] = []
+    for cat in category_order:
+        cat_services = by_category[cat]
+        if visitor_country:
+            # Within a category, the visitor's-country services lead, then
+            # the rest — both buckets keep their existing name ordering.
+            cat_services = sorted(cat_services, key=lambda s: s.country != visitor_country)
+        ordered_services.extend(cat_services)
+
+    return ordered_services
 
 
 @router.get("/categories")

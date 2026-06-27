@@ -29,7 +29,9 @@ export default function Home() {
       <nav className="sticky top-0 z-20 bg-slate-950/80 backdrop-blur-md border-b border-white/5">
         <div className="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4">
           <div className="flex items-center gap-2">
-            <img src="/logo-icon.png" alt="SocialHypeCrowd" className="w-7 h-7 sm:w-8 sm:h-8 shrink-0 object-contain" />
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-white flex items-center justify-center shrink-0 shadow-sm">
+              <img src="/logo-icon.png" alt="SocialHypeCrowd" className="w-6 h-6 sm:w-7 sm:h-7 object-contain" />
+            </div>
             <span className="text-base sm:text-lg font-bold tracking-tight">SocialHypeCrowd</span>
           </div>
           <div className="flex items-center gap-2 sm:gap-3">
@@ -63,7 +65,7 @@ export default function Home() {
         </div>
         <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-4 sm:mb-6 tracking-tight px-2">
           Grow Your Social Media<br />
-          <span className="bg-gradient-to-r from-brand-400 to-brand-600 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-sky-400 via-brand-400 to-pink-500 bg-clip-text text-transparent">
             Faster Than Ever
           </span>
         </h1>
@@ -157,7 +159,9 @@ export default function Home() {
       <footer className="border-t border-white/5 px-4 sm:px-6 py-5 sm:py-6">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-slate-600 text-xs">
           <div className="flex items-center gap-2">
-            <img src="/logo-icon.png" alt="SocialHypeCrowd" className="w-5 h-5 object-contain" />
+            <div className="w-6 h-6 rounded-md bg-white flex items-center justify-center shrink-0">
+              <img src="/logo-icon.png" alt="SocialHypeCrowd" className="w-4 h-4 object-contain" />
+            </div>
             <span>SocialHypeCrowd</span>
           </div>
           <p>© {new Date().getFullYear()} SocialHypeCrowd. All rights reserved.</p>

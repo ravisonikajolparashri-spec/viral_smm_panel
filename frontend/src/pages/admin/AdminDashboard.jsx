@@ -23,7 +23,7 @@ export default function AdminDashboard() {
 
       {/* Header banner */}
       <div className="bg-gradient-to-r from-violet-600 to-violet-700 rounded-2xl px-4 sm:px-6 py-4 sm:py-5 text-white shadow-lg shadow-violet-200">
-        <p className="text-violet-200 text-xs sm:text-sm font-medium mb-0.5">Admin Panel</p>
+        <p className="text-violet-200 text-xs sm:text-sm font-medium mb-0.5">Admin Tool</p>
         <h1 className="text-xl sm:text-2xl font-bold">Overview</h1>
         <p className="text-violet-200 text-xs sm:text-sm mt-1 hidden sm:block">Platform statistics, revenue, and order overview</p>
       </div>
