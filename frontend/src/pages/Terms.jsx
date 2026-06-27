@@ -15,7 +15,7 @@ export default function Terms() {
         </LegalSection>
 
         <LegalSection title="2. Service Description">
-          <p>SocialHypeCrowd is a social media marketing reseller panel that provides followers, likes, views, and engagement services for various social media platforms. All services are delivered through third-party providers.</p>
+          <p>SocialHypeCrowd is a social media marketing reseller tool that provides followers, likes, views, and engagement services for various social media platforms. All services are delivered through third-party providers.</p>
         </LegalSection>
 
         <LegalSection title="3. Account Responsibilities">

@@ -61,7 +61,7 @@ export default function Home() {
       <section className="max-w-4xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-14 sm:pb-20 text-center">
         <div className="inline-flex items-center gap-2 bg-brand-900/40 border border-brand-700/50 text-brand-300 text-xs font-semibold px-3.5 py-1.5 rounded-full mb-6 sm:mb-8">
           <span className="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse" />
-          India's Most Affordable Social Media Panel
+          India's Most Affordable Social Media Tool
         </div>
         <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-4 sm:mb-6 tracking-tight px-2">
           Grow Your Social Media<br />
