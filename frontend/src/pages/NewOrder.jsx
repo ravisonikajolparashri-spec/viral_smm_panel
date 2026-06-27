@@ -25,7 +25,7 @@ export default function NewOrder() {
       .finally(() => setLoadingServices(false))
   }, [])
 
-  // ── Categories ("Service" picker) ─────────────────────────────────────────
+  // ── Categories (platforms) ─────────────────────────────────────────────────
   const categoryOptions = useMemo(() => {
     const map = {}
     allServices.forEach(s => {
@@ -37,7 +37,7 @@ export default function NewOrder() {
       .map(cat => ({ value: cat, label: cat, meta: { count: map[cat].length } }))
   }, [allServices])
 
-  // ── Packages within the chosen category ───────────────────────────────────
+  // ── Subcategories within the chosen category ─────────────────────────────
   const packageOptions = useMemo(() => {
     if (!selectedCategory) return []
     return allServices
@@ -45,11 +45,6 @@ export default function NewOrder() {
       .sort((a, b) => a.name.localeCompare(b.name))
       .map(s => ({ value: s.id, label: s.name, meta: s }))
   }, [allServices, selectedCategory])
-
-  // ── Flat quick-search across every service ────────────────────────────────
-  const quickSearchOptions = useMemo(() => {
-    return allServices.map(s => ({ value: s.id, label: s.name, meta: s }))
-  }, [allServices])
 
   const applyService = (svc) => {
     setSelectedCategory(svc.category)
@@ -91,7 +86,7 @@ export default function NewOrder() {
       <div>
         <h1 className="text-xl sm:text-2xl font-bold text-slate-800">New Order</h1>
         <p className="text-slate-500 text-xs sm:text-sm mt-1">
-          Pick a platform, choose a package, and place your order
+          Pick a category, choose a subcategory, and place your order
         </p>
       </div>
 
@@ -131,53 +126,18 @@ export default function NewOrder() {
 
           <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
 
-            {/* ── Quick search across all services ─────────────────────── */}
+            {/* ── Category (platform) ──────────────────────────────────── */}
             <div>
               <label className="block text-sm font-semibold text-slate-700 mb-1.5">
-                Search Service
+                Category
                 {loadingServices && (
                   <span className="ml-2 text-xs font-normal text-slate-400">Loading…</span>
                 )}
               </label>
               <CustomSelect
-                options={quickSearchOptions}
-                value={selectedService?.id ?? ''}
-                onChange={(val, opt) => applyService(opt.meta)}
-                placeholder={loadingServices ? 'Loading services…' : 'Type to search any service…'}
-                disabled={loadingServices}
-                renderTrigger={(selected, placeholder) =>
-                  selected ? (
-                    <span className="flex items-center gap-2 min-w-0">
-                      <PlatformIcon category={selected.meta.category} size="sm" />
-                      <span className="truncate text-slate-800 text-sm">{selected.label}</span>
-                    </span>
-                  ) : (
-                    <span className="flex items-center gap-2 text-slate-400 text-sm">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                      </svg>
-                      {placeholder}
-                    </span>
-                  )
-                }
-                renderOption={(opt) => (
-                  <span className="flex items-center gap-2 min-w-0">
-                    <PlatformIcon category={opt.meta.category} size="sm" />
-                    <span className="truncate text-sm text-slate-700">{opt.label}</span>
-                    <span className="shrink-0 text-xs font-semibold text-emerald-600 ml-auto">
-                      ₹{opt.meta.rate}/1k
-                    </span>
-                  </span>
-                )}
-              />
-            </div>
-
-            {/* ── Service (platform/category) ──────────────────────────── */}
-            <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-1.5">Service</label>
-              <CustomSelect
                 options={categoryOptions}
                 value={selectedCategory ?? ''}
+                searchable={false}
                 onChange={(val) => {
                   setSelectedCategory(val)
                   setSelectedService(null)
@@ -212,19 +172,20 @@ export default function NewOrder() {
               />
             </div>
 
-            {/* ── Package (specific service within category) ─────────────── */}
+            {/* ── Subcategory (specific service within category) ──────────── */}
             <div>
               <label className="block text-sm font-semibold text-slate-700 mb-1.5">
-                Package
+                Subcategory
                 {!selectedCategory && (
-                  <span className="text-slate-400 font-normal ml-2 text-xs">Pick a service first</span>
+                  <span className="text-slate-400 font-normal ml-2 text-xs">Pick a category first</span>
                 )}
               </label>
               <CustomSelect
                 options={packageOptions}
                 value={selectedService?.id ?? ''}
+                searchable={false}
                 onChange={(val, opt) => applyService(opt.meta)}
-                placeholder={selectedCategory ? 'Choose a package…' : 'Select a service above first'}
+                placeholder={selectedCategory ? 'Choose a subcategory…' : 'Select a category above first'}
                 disabled={!selectedCategory}
                 renderTrigger={(selected, placeholder) =>
                   selected ? (
